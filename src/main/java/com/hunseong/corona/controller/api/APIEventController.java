@@ -1,12 +1,12 @@
-package com.hunseong.corona.controller;
+package com.hunseong.corona.controller.api;
 
 import com.hunseong.corona.domain.dto.EventDto;
 import com.hunseong.corona.service.EventService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -15,15 +15,13 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 @RequestMapping("/events")
-@Controller
-public class EventController {
+@RestController
+public class APIEventController {
 
     private final EventService eventService;
 
     @GetMapping
-    public String events(Model model) {
-        List<EventDto> events = eventService.getEvents();
-        model.addAttribute("events", events);
-        return "test";
+    public List<EventDto> events(Model model) {
+        return eventService.getEvents();
     }
 }
