@@ -1,4 +1,4 @@
-package com.hunseong.corona.controller.api;
+package com.hunseong.corona.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * Created by Hunseong on 2022/05/02
  */
 @Controller
-public class APIBaseController {
+public class BaseController {
 
     @GetMapping("/")
     public String root() {
