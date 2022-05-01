@@ -1,5 +1,5 @@
 # get-in-line
-코로나 입장인원 카운팅 서비스 - API                  
+장소 입장인원 카운팅 API 서비스                                     
 [Uno Kim님의 get-in-line 프로젝트](https://github.com/djkeh/get-in-line)를 참고하여 API 형태의 서비스로 변환 및 공부한 내용 추가해보기                 
 
 ## Project Goal
