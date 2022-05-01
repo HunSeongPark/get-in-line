@@ -1,5 +1,6 @@
 package com.hunseong.corona.controller.api;
 
+import com.hunseong.corona.domain.dto.APIDataResponse;
 import com.hunseong.corona.domain.dto.EventDto;
 import com.hunseong.corona.service.EventService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class APIEventController {
     private final EventService eventService;
 
     @GetMapping
-    public List<EventDto> events(Model model) {
-        return eventService.getEvents();
+    public APIDataResponse<List<EventDto>> events(Model model) {
+        return APIDataResponse.of(eventService.getEvents());
     }
 }
