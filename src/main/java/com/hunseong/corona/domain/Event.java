@@ -54,7 +54,9 @@ public class Event extends BaseTimeEntity {
     protected Event(Place place, String eventName, EventStatus eventStatus,
                  LocalDateTime eventStartDatetime, LocalDateTime eventEndDatetime,
                  Integer currentNumberOfPeople, Integer capacity, String memo) {
-        this.place = place;
+        if (place != null) {
+            this.changePlace(place);
+        }
         this.eventName = eventName;
         this.eventStatus = eventStatus;
         this.eventStartDatetime = eventStartDatetime;
@@ -70,6 +72,12 @@ public class Event extends BaseTimeEntity {
 
         return new Event(place, eventName, eventStatus,
                 eventStartDatetime, eventEndDatetime, currentNumberOfPeople, capacity, memo);
+    }
+
+    // 양방향 연관관계 편의 메서드
+    private void changePlace(Place place) {
+        this.place = place;
+        place.getEvents().add(this);
     }
 
     @Override
