@@ -1,5 +1,6 @@
 package com.hunseong.corona.domain;
 
+import com.hunseong.corona.constant.EventStatus;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
