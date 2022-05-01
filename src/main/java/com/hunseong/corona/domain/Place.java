@@ -1,5 +1,6 @@
 package com.hunseong.corona.domain;
 
+import com.hunseong.corona.constant.PlaceType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Place {
+public class Place extends BaseTimeEntity {
 
     @Id
     @GeneratedValue

@@ -18,7 +18,7 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Event {
+public class Event extends BaseTimeEntity {
 
     @Id @GeneratedValue
     @Column(name = "event_id")
