@@ -66,7 +66,7 @@ class EventServiceTest {
         );
 
         Event event2 = Event.of(
-                place1,
+                place2,
                 "event2",
                 EventStatus.OPENED,
                 LocalDateTime.of(2021, 2, 1, 10, 10),
@@ -82,6 +82,9 @@ class EventServiceTest {
         // when
         List<EventDto> result = eventService.getEvents();
 
+        for (EventDto eventDto : result) {
+            System.out.println("place = " + eventDto.getPlaceDto().getPlaceName());
+        }
         // then
         assertThat(result.size()).isEqualTo(2);
         assertThat(result.get(0)).extracting("eventName").isEqualTo("event2");

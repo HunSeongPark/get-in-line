@@ -24,7 +24,7 @@ public class Event extends BaseTimeEntity {
     @Column(name = "event_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "place_id")
     private Place place;
 
