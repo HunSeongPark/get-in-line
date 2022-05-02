@@ -7,7 +7,6 @@ import com.hunseong.corona.domain.Place;
 import com.hunseong.corona.domain.dto.EventDto;
 import com.hunseong.corona.domain.dto.EventEditRequest;
 import com.hunseong.corona.exception.GeneralException;
-import com.sun.jdi.request.EventRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
