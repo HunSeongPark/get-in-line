@@ -19,7 +19,6 @@ public class APIPlaceController {
     private final PlaceService placeService;
 
     // TODO
-//    /places	            POST	장소 등록
 //    /places/{place-id}	PUT	    장소 정보 변경
 //    /places/{place-id}	DELETE	장소 삭제
 
@@ -36,5 +35,13 @@ public class APIPlaceController {
     @PostMapping
     public APIDataResponse<PlaceResponse> createPlace(@Valid @RequestBody PlaceCreateRequest request) {
         return APIDataResponse.of(placeService.createPlace(request));
+    }
+
+    @PutMapping("/{placeId}")
+    public APIDataResponse<PlaceResponse> modifyPlace(
+            @PathVariable Long placeId,
+            @Valid @RequestBody PlaceEditRequest request) {
+
+        return APIDataResponse.of(placeService.modifyPlace(placeId, request));
     }
 }

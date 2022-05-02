@@ -4,6 +4,7 @@ import com.hunseong.corona.constant.ErrorCode;
 import com.hunseong.corona.domain.Place;
 import com.hunseong.corona.domain.dto.PlaceCreateRequest;
 import com.hunseong.corona.domain.dto.PlaceDto;
+import com.hunseong.corona.domain.dto.PlaceEditRequest;
 import com.hunseong.corona.domain.dto.PlaceResponse;
 import com.hunseong.corona.exception.GeneralException;
 import com.hunseong.corona.repository.PlaceRepository;
@@ -44,18 +45,18 @@ public class PlaceService {
         return PlaceResponse.fromEntity(placeRepository.save(placeCreateRequest.toEntity()));
     }
 
-//    public EventResponse modifyEvent(Long eventId, EventEditRequest eventEditRequest) {
-//
-//        Event event = eventRepository.findById(eventId)
-//                .orElseThrow(() -> {
-//                    throw new GeneralException(ErrorCode.DATA_ACCESS_ERROR);
-//                });
-//
-//        event.update(eventEditRequest);
-//
-//        return EventResponse.fromEntity(event);
-//    }
-//
+    public PlaceResponse modifyPlace(Long placeId, PlaceEditRequest placeEditRequest) {
+
+        Place place = placeRepository.findById(placeId)
+                .orElseThrow(() -> {
+                    throw new GeneralException(ErrorCode.DATA_ACCESS_ERROR);
+                });
+
+        place.update(placeEditRequest);
+
+        return PlaceResponse.fromEntity(place);
+    }
+
 //    public void deleteEvent(Long eventId) {
 //        Event event = eventRepository.findById(eventId)
 //                .orElseThrow(() -> {

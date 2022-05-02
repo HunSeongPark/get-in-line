@@ -1,6 +1,8 @@
 package com.hunseong.corona.domain;
 
 import com.hunseong.corona.constant.PlaceType;
+import com.hunseong.corona.domain.dto.EventEditRequest;
+import com.hunseong.corona.domain.dto.PlaceEditRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,8 @@ import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import static org.springframework.util.StringUtils.hasText;
 
 /**
  * Created by Hunseong on 2022/05/02
@@ -68,6 +72,27 @@ public class Place extends BaseTimeEntity {
             String phoneNumber, Integer capacity, String memo
     ) {
         return new Place(placeType, placeName, address, phoneNumber, capacity, memo);
+    }
+
+    public void update(PlaceEditRequest request) {
+        if (hasText(request.getPlaceName())) {
+            this.placeName = request.getPlaceName();
+        }
+        if (request.getPlaceType() != null) {
+            this.placeType = request.getPlaceType();
+        }
+        if (hasText(request.getPhoneNumber())) {
+            this.phoneNumber = request.getPhoneNumber();
+        }
+        if (hasText(request.getAddress())) {
+            this.address = request.getAddress();
+        }
+        if (request.getCapacity() != null) {
+            this.capacity = request.getCapacity();
+        }
+        if (hasText(request.getMemo())) {
+            this.memo = request.getMemo();
+        }
     }
 
     @Override
