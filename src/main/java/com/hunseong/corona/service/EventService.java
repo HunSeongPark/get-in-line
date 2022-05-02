@@ -67,4 +67,12 @@ public class EventService {
 
         return EventResponse.fromEntity(event);
     }
+
+    public void deleteEvent(Long eventId) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> {
+                    throw new GeneralException(ErrorCode.DATA_ACCESS_ERROR);
+                });
+        eventRepository.delete(event);
+    }
 }

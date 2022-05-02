@@ -17,7 +17,6 @@ import java.util.List;
 public class APIEventController {
 
     // TODO
-//    /api/events/{event-id}	PUT	    이벤트 정보 변경
 //    /api/events/{event-id}	DELETE	이벤트 삭제
 
     private final EventService eventService;
@@ -42,5 +41,11 @@ public class APIEventController {
             @PathVariable Long eventId,
             @Valid @RequestBody EventEditRequest eventEditRequest) {
         return APIDataResponse.of(eventService.modifyEvent(eventId, eventEditRequest));
+    }
+
+    @DeleteMapping("/{eventId}")
+    public String deleteEvent(@PathVariable Long eventId) {
+        eventService.deleteEvent(eventId);
+        return "SUCCESS";
     }
 }
