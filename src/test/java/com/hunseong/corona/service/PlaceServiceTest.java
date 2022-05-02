@@ -6,6 +6,7 @@ import com.hunseong.corona.domain.Event;
 import com.hunseong.corona.domain.Place;
 import com.hunseong.corona.domain.dto.EventDto;
 import com.hunseong.corona.domain.dto.PlaceDto;
+import com.hunseong.corona.exception.GeneralException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -101,5 +102,32 @@ class PlaceServiceTest {
         assertThat(result.size()).isEqualTo(2);
         assertThat(result.get(0)).extracting("placeName").isEqualTo("p1");
         assertThat(result.get(1)).extracting("placeName").isEqualTo("p2");
+    }
+
+    @DisplayName("[GET /places/{placeId}] placeId에 해당하는 장소 받아오기 - 성공")
+    @Test
+    void getPlace() {
+
+        // given
+
+
+        // when
+        PlaceDto placeDto1 = placeService.getPlace(1L);
+        PlaceDto placeDto2 = placeService.getPlace(2L);
+
+        // then
+        assertThat(placeDto1.getPlaceName()).isEqualTo("p1");
+        assertThat(placeDto2.getPlaceName()).isEqualTo("p2");
+    }
+
+    @DisplayName("[GET /places/{placeId}] placeId에 해당하는 장소 받아오기 - place 존재 X")
+    @Test
+    void getPlace_NotExistPlace() {
+
+        // given
+
+        // when & then
+        assertThrows(GeneralException.class,
+                () -> placeService.getPlace(0L));
     }
 }
