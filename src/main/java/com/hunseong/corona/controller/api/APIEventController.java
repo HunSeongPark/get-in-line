@@ -30,7 +30,7 @@ public class APIEventController {
     private final EventService eventService;
 
     @GetMapping
-    public APIDataResponse<List<EventDto>> events(Model model) {
+    public APIDataResponse<List<EventDto>> events() {
         return APIDataResponse.of(eventService.getEvents());
     }
 

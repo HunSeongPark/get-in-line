@@ -5,10 +5,12 @@ import com.hunseong.corona.constant.PlaceType;
 import com.hunseong.corona.domain.Event;
 import com.hunseong.corona.domain.Place;
 import com.hunseong.corona.domain.dto.EventDto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -30,11 +32,8 @@ class EventServiceTest {
     @Autowired
     EventService eventService;
 
-    @DisplayName("[GET /events] 모든 이벤트를 시작날짜가 빠른순으로 받아온다")
-    @Test
-    void getAllEvents() {
-
-        // given
+    @BeforeEach
+    public void before() {
         Place place1 = Place.of(
                 PlaceType.COMMON,
                 "p1",
@@ -79,6 +78,16 @@ class EventServiceTest {
         em.persist(event1);
         em.persist(event2);
 
+        System.out.println("event1 = " + event1);
+        System.out.println("event2 = " + event2);
+    }
+
+    @DisplayName("[GET /events] 모든 이벤트를 시작날짜가 빠른순으로 받아온다")
+    @Test
+    void getAllEvents() {
+
+        // given
+
         // when
         List<EventDto> result = eventService.getEvents();
 
@@ -89,5 +98,21 @@ class EventServiceTest {
         assertThat(result.size()).isEqualTo(2);
         assertThat(result.get(0)).extracting("eventName").isEqualTo("event2");
         assertThat(result.get(1)).extracting("eventName").isEqualTo("event1");
+    }
+
+    @DisplayName("[GET /events/{eventId}] eventId에 해당하는 이벤트 받아오기 - 성공")
+    @Test
+    void getEvent() {
+
+        // given
+
+
+        // when
+        EventDto eventDto1 = eventService.getEvent(3L);
+        EventDto eventDto2 = eventService.getEvent(4L);
+
+        // then
+        assertThat(eventDto1.getEventName()).isEqualTo("event1");
+        assertThat(eventDto2.getEventName()).isEqualTo("event2");
     }
 }
