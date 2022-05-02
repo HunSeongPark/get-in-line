@@ -5,6 +5,7 @@ import com.hunseong.corona.constant.PlaceType;
 import com.hunseong.corona.domain.Event;
 import com.hunseong.corona.domain.Place;
 import com.hunseong.corona.domain.dto.EventDto;
+import com.hunseong.corona.exception.GeneralException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Created by Hunseong on 2022/05/02
@@ -114,5 +116,16 @@ class EventServiceTest {
         // then
         assertThat(eventDto1.getEventName()).isEqualTo("event1");
         assertThat(eventDto2.getEventName()).isEqualTo("event2");
+    }
+
+    @DisplayName("[GET /events/{eventId}] eventId에 해당하는 이벤트 받아오기 - event 존재 X")
+    @Test
+    void getEvent_NotExistEvent() {
+
+        // given
+
+        // when & then
+        assertThrows(GeneralException.class,
+                () -> eventService.getEvent(11L));
     }
 }
