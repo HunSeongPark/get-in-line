@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * Created by Hunseong on 2022/05/02
  */
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class EventDto {
 
     private Long id;
