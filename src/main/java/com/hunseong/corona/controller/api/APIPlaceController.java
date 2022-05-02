@@ -19,7 +19,6 @@ public class APIPlaceController {
     private final PlaceService placeService;
 
     // TODO
-//    /places/{place-id}	PUT	    장소 정보 변경
 //    /places/{place-id}	DELETE	장소 삭제
 
     @GetMapping
@@ -43,5 +42,11 @@ public class APIPlaceController {
             @Valid @RequestBody PlaceEditRequest request) {
 
         return APIDataResponse.of(placeService.modifyPlace(placeId, request));
+    }
+
+    @DeleteMapping("/{placeId}")
+    public String deletePlace(@PathVariable Long placeId) {
+        placeService.deletePlace(placeId);
+        return "SUCCESS";
     }
 }

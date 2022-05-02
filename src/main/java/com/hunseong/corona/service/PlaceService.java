@@ -57,11 +57,12 @@ public class PlaceService {
         return PlaceResponse.fromEntity(place);
     }
 
-//    public void deleteEvent(Long eventId) {
-//        Event event = eventRepository.findById(eventId)
-//                .orElseThrow(() -> {
-//                    throw new GeneralException(ErrorCode.DATA_ACCESS_ERROR);
-//                });
-//        eventRepository.delete(event);
-//    }
+    public void deletePlace(Long placeId) {
+        Place place = placeRepository.findById(placeId)
+                .orElseThrow(() -> {
+                    throw new GeneralException(ErrorCode.DATA_ACCESS_ERROR);
+                });
+
+        placeRepository.delete(place);
+    }
 }
