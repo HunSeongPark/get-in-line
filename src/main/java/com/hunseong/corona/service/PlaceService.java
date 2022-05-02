@@ -1,6 +1,9 @@
 package com.hunseong.corona.service;
 
+import com.hunseong.corona.constant.ErrorCode;
+import com.hunseong.corona.domain.Place;
 import com.hunseong.corona.domain.dto.PlaceDto;
+import com.hunseong.corona.exception.GeneralException;
 import com.hunseong.corona.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,16 +28,16 @@ public class PlaceService {
                 .stream().map(PlaceDto::of).collect(Collectors.toList());
     }
 
-//    @Transactional(readOnly = true)
-//    public EventDto getEvent(Long eventId) {
-//
-//        Event event = eventRepository.findFetchJoinPlaceById(eventId).orElseThrow(() -> {
-//            throw new GeneralException(ErrorCode.DATA_ACCESS_ERROR);
-//        });
-//
-//        return EventDto.of(event);
-//    }
-//
+    @Transactional(readOnly = true)
+    public PlaceDto getPlace(Long placeId) {
+
+        Place place = placeRepository.findById(placeId).orElseThrow(() -> {
+            throw new GeneralException(ErrorCode.DATA_ACCESS_ERROR);
+        });
+
+        return PlaceDto.of(place);
+    }
+
 //    public EventResponse createEvent(EventCreateRequest eventCreateRequest) {
 //
 //        Place place = placeRepository.findById(eventCreateRequest.getPlaceId())
