@@ -16,9 +16,6 @@ import java.util.List;
 @RestController
 public class APIEventController {
 
-    // TODO
-//    /api/events/{event-id}	DELETE	이벤트 삭제
-
     private final EventService eventService;
 
     @GetMapping
