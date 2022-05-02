@@ -5,7 +5,9 @@ import com.hunseong.corona.constant.PlaceType;
 import com.hunseong.corona.domain.Event;
 import com.hunseong.corona.domain.Place;
 import com.hunseong.corona.domain.dto.EventDto;
+import com.hunseong.corona.domain.dto.EventEditRequest;
 import com.hunseong.corona.exception.GeneralException;
+import com.sun.jdi.request.EventRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -126,5 +128,26 @@ class EventServiceTest {
         // when & then
         assertThrows(GeneralException.class,
                 () -> eventService.getEvent(0L));
+    }
+
+    @DisplayName("[PUT /events/{eventId}] eventId에 해당하는 event 정보 변경 - 성공")
+    @Test
+    void editEvent() {
+
+        // given
+        EventDto event = eventService.getEvents().get(0);
+
+        EventEditRequest req = new EventEditRequest("change", null, null, null,
+                null, null, null);
+        // when
+        eventService.modifyEvent(event.getId(), req);
+
+        em.flush();
+        em.clear();
+
+        EventDto findEvent = eventService.getEvent(event.getId());
+
+        // then
+        assertThat(findEvent.getEventName()).isEqualTo(req.getEventName());
     }
 }
