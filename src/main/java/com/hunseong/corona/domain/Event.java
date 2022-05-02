@@ -1,6 +1,7 @@
 package com.hunseong.corona.domain;
 
 import com.hunseong.corona.constant.EventStatus;
+import com.hunseong.corona.domain.dto.EventEditRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import static org.springframework.util.StringUtils.hasText;
 
 /**
  * Created by Hunseong on 2022/05/02
@@ -78,6 +81,30 @@ public class Event extends BaseTimeEntity {
     private void changePlace(Place place) {
         this.place = place;
         place.getEvents().add(this);
+    }
+
+    public void update(EventEditRequest request) {
+        if (hasText(request.getEventName())) {
+            this.eventName = request.getEventName();
+        }
+        if (request.getEventStatus() != null) {
+            this.eventStatus = request.getEventStatus();
+        }
+        if (request.getEventStartDatetime() != null) {
+            this.eventStartDatetime = request.getEventStartDatetime();
+        }
+        if (request.getEventEndDatetime() != null) {
+            this.eventEndDatetime = request.getEventEndDatetime();
+        }
+        if (request.getCurrentNumberOfPeople() != null) {
+            this.currentNumberOfPeople = request.getCurrentNumberOfPeople();
+        }
+        if (request.getCapacity() != null) {
+            this.capacity = request.getCapacity();
+        }
+        if (hasText(request.getMemo())) {
+            this.memo = request.getMemo();
+        }
     }
 
     @Override

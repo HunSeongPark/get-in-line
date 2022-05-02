@@ -11,7 +11,6 @@ import java.util.Optional;
  */
 public interface EventRepository extends JpaRepository<Event, Long> {
 
-    @Override
     @EntityGraph(attributePaths = {"place"})
-    Optional<Event> findById(Long aLong);
+    Optional<Event> findFetchJoinPlaceById(Long aLong);
 }

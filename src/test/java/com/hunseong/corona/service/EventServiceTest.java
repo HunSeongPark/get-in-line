@@ -109,8 +109,8 @@ class EventServiceTest {
 
 
         // when
-        EventDto eventDto1 = eventService.getEvent(3L);
-        EventDto eventDto2 = eventService.getEvent(4L);
+        EventDto eventDto1 = eventService.getEvent(11L);
+        EventDto eventDto2 = eventService.getEvent(12L);
 
         // then
         assertThat(eventDto1.getEventName()).isEqualTo("event1");
@@ -125,6 +125,6 @@ class EventServiceTest {
 
         // when & then
         assertThrows(GeneralException.class,
-                () -> eventService.getEvent(11L));
+                () -> eventService.getEvent(0L));
     }
 }
