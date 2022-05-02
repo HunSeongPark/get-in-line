@@ -4,8 +4,7 @@ import com.hunseong.corona.constant.EventStatus;
 import com.hunseong.corona.constant.PlaceType;
 import com.hunseong.corona.domain.Event;
 import com.hunseong.corona.domain.Place;
-import com.hunseong.corona.domain.dto.EventDto;
-import com.hunseong.corona.domain.dto.PlaceDto;
+import com.hunseong.corona.domain.dto.*;
 import com.hunseong.corona.exception.GeneralException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -129,5 +128,24 @@ class PlaceServiceTest {
         // when & then
         assertThrows(GeneralException.class,
                 () -> placeService.getPlace(0L));
+    }
+
+    @DisplayName("[POST /places] 장소 추가 - 성공")
+    @Test
+    void createPlace() {
+
+        // given
+        PlaceCreateRequest request = new PlaceCreateRequest("newPlace", PlaceType.COMMON, "123", "010",
+                3, "memo!");
+
+        // when
+        PlaceResponse response = placeService.createPlace(request);
+
+        List<PlaceDto> places = placeService.getPlaces();
+
+        // then
+        assertThat(response.getPlaceName()).isEqualTo("newPlace");
+        assertThat(places.size()).isEqualTo(3);
+        assertThat(places.get(places.size()-1)).extracting("placeName").isEqualTo("newPlace");
     }
 }
