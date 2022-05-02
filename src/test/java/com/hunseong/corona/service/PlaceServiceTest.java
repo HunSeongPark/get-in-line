@@ -169,4 +169,19 @@ class PlaceServiceTest {
         // then
         assertThat(findPlace.getPlaceName()).isEqualTo(req.getPlaceName());
     }
+
+    @DisplayName("[DELETE /places/{placeId}] placeId 해당하는 place 삭제 - 성공")
+    @Test
+    void deletePlace() {
+
+        // given
+        PlaceDto placeDto = placeService.getPlaces().get(0);
+
+        // when
+        placeService.deletePlace(placeDto.getId());
+
+        // then
+        assertThrows(GeneralException.class,
+                () -> placeService.getPlace(placeDto.getId()));
+    }
 }

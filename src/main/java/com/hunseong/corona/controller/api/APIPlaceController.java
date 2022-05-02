@@ -18,9 +18,6 @@ public class APIPlaceController {
 
     private final PlaceService placeService;
 
-    // TODO
-//    /places/{place-id}	DELETE	장소 삭제
-
     @GetMapping
     public APIDataResponse<List<PlaceDto>> places() {
         return APIDataResponse.of(placeService.getPlaces());
