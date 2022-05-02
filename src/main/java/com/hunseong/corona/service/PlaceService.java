@@ -2,7 +2,9 @@ package com.hunseong.corona.service;
 
 import com.hunseong.corona.constant.ErrorCode;
 import com.hunseong.corona.domain.Place;
+import com.hunseong.corona.domain.dto.PlaceCreateRequest;
 import com.hunseong.corona.domain.dto.PlaceDto;
+import com.hunseong.corona.domain.dto.PlaceResponse;
 import com.hunseong.corona.exception.GeneralException;
 import com.hunseong.corona.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,16 +40,10 @@ public class PlaceService {
         return PlaceDto.of(place);
     }
 
-//    public EventResponse createEvent(EventCreateRequest eventCreateRequest) {
-//
-//        Place place = placeRepository.findById(eventCreateRequest.getPlaceId())
-//                .orElseThrow(() -> {
-//                    throw new GeneralException(ErrorCode.DATA_ACCESS_ERROR);
-//                });
-//
-//        return EventResponse.fromEntity(eventRepository.save(eventCreateRequest.toEntity(place)));
-//    }
-//
+    public PlaceResponse createPlace(PlaceCreateRequest placeCreateRequest) {
+        return PlaceResponse.fromEntity(placeRepository.save(placeCreateRequest.toEntity()));
+    }
+
 //    public EventResponse modifyEvent(Long eventId, EventEditRequest eventEditRequest) {
 //
 //        Event event = eventRepository.findById(eventId)
