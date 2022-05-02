@@ -150,4 +150,19 @@ class EventServiceTest {
         // then
         assertThat(findEvent.getEventName()).isEqualTo(req.getEventName());
     }
+
+    @DisplayName("[DELETE /events/{eventId}] eventId에 해당하는 event 삭제 - 성공")
+    @Test
+    void deleteEvent() {
+
+        // given
+        EventDto event = eventService.getEvents().get(0);
+
+        // when
+        eventService.deleteEvent(event.getId());
+
+        // then
+        assertThrows(GeneralException.class,
+                () -> eventService.getEvent(event.getId()));
+    }
 }
