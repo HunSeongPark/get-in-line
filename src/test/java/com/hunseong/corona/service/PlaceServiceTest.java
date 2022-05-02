@@ -148,4 +148,25 @@ class PlaceServiceTest {
         assertThat(places.size()).isEqualTo(3);
         assertThat(places.get(places.size()-1)).extracting("placeName").isEqualTo("newPlace");
     }
+
+    @DisplayName("[PUT /places/{placeId}] placeId에 해당하는 place 정보 변경 - 성공")
+    @Test
+    void editPlace() {
+
+        // given
+        PlaceDto placeDto = placeService.getPlaces().get(0);
+
+        PlaceEditRequest req = new PlaceEditRequest("change", null, null, null,
+                null, null);
+        // when
+        placeService.modifyPlace(placeDto.getId(), req);
+
+        em.flush();
+        em.clear();
+
+        PlaceDto findPlace = placeService.getPlace(placeDto.getId());
+
+        // then
+        assertThat(findPlace.getPlaceName()).isEqualTo(req.getPlaceName());
+    }
 }
