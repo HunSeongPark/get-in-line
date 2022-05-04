@@ -1,6 +1,7 @@
 package com.hunseong.corona.controller.api;
 
 import com.hunseong.corona.domain.dto.APIDataResponse;
+import com.hunseong.corona.domain.dto.LoginRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
