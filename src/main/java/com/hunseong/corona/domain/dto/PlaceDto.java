@@ -1,18 +1,12 @@
 package com.hunseong.corona.domain.dto;
 
 import com.hunseong.corona.constant.PlaceType;
-import com.hunseong.corona.domain.AdminPlaceMap;
-import com.hunseong.corona.domain.Event;
 import com.hunseong.corona.domain.Place;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.ToString;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 /**
  * Created by Hunseong on 2022/05/02

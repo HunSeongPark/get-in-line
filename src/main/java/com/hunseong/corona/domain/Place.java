@@ -52,11 +52,6 @@ public class Place extends BaseTimeEntity {
     @OneToMany(mappedBy = "place", cascade = CascadeType.REMOVE)
     private final Set<Event> events = new LinkedHashSet<>();
 
-    @ToString.Exclude
-    @OrderBy("id")
-    @OneToMany(mappedBy = "place", cascade = CascadeType.REMOVE)
-    private final Set<AdminPlaceMap> adminPlaceMaps = new LinkedHashSet<>();
-
     protected Place(PlaceType placeType, String placeName, String address,
                     String phoneNumber, Integer capacity, String memo) {
         this.placeType = placeType;
