@@ -22,3 +22,14 @@
   - QueryDSL
   - ThymeLeaf (로그인 화면 구성에만 사용)
   - H2 Database   
+
+## 정리할 내용(발생한 문제)
+- 무결성 참조 문제 오류 발생 (cascade=Cascade.REMOVE, orphanRemoval=true)
+```
+@OneToMany(mappedBy = "place")
+private final Set<Event> events = new LinkedHashSet<>();
+
+*log*
+org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Referential integrity constraint violation: "FKPUVIX4LEXRAKGDLT8SI1TBTXV: PUBLIC.EVENT FOREIGN KEY(PLACE_ID) REFERENCES PUBLIC.PLACE(PLACE_ID) (CAST(3 AS BIGINT))"; SQL statement:
+delete from place where place_id=? [23503-200]
+```
