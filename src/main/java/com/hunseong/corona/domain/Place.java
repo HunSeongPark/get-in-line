@@ -49,12 +49,12 @@ public class Place extends BaseTimeEntity {
 
     @ToString.Exclude
     @OrderBy("id")
-    @OneToMany(mappedBy = "place", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "place", cascade = CascadeType.REMOVE)
     private final Set<Event> events = new LinkedHashSet<>();
 
     @ToString.Exclude
     @OrderBy("id")
-    @OneToMany(mappedBy = "place", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "place", cascade = CascadeType.REMOVE)
     private final Set<AdminPlaceMap> adminPlaceMaps = new LinkedHashSet<>();
 
     protected Place(PlaceType placeType, String placeName, String address,
