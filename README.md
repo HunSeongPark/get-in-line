@@ -21,7 +21,7 @@
   - H2 Database   
 
 ## 정리할 내용(발생한 문제)
-- 무결성 참조 문제 오류 발생 (cascade=Cascade.REMOVE, orphanRemoval=true)
+- [무결성 참조 문제 오류 발생](https://hungseong.tistory.com/59) (cascade=Cascade.REMOVE, orphanRemoval=true)
 ```
 @OneToMany(mappedBy = "place")
 private final Set<Event> events = new LinkedHashSet<>();
